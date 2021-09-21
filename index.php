@@ -38,6 +38,14 @@ $page_count = floor(count($data) / $count);
 		</div>
   </header>
   	<div id="content" class="container content_top">
+			<?php 
+				if (isset($_SESSION['message'])) { 
+					?>
+				<p class="msg"><?php echo $_SESSION['message']; ?></p>
+					<?php unset($_SESSION['message']); ?>
+					<?php
+				}
+			?>
 			<form action="controllers/tasks.php" method="POST">
 				<select name='select'>
 				<option value='1'>name (a-z)</option>
@@ -51,36 +59,76 @@ $page_count = floor(count($data) / $count);
 				<input type='submit' name='submit' value='sort'>
 			</form>
 <!-- Список задач -->
-  		<div class="mb-3">
-  			<table>
-			  	<tr>
-					<th class="st sth">name</th>
-					<th class="st sth">e-mail</th>
-					<th class="st sth">text</th>
-					<th class="st sth">status</th>				
-			    </tr>
-			  <?php 
-					for ($i = $page * $count; $i < ($page+1) * $count; $i++) :?>
+  			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">E-mail</th>
+						<th scope="col">Text</th>
+						<th scope="col">Status</th>				
+					</tr>
+			    </thead>
+				<tbody>
+					<?php for ($i = $page * $count; $i < ($page+1) * $count; $i++) :?>
 						<?php if (isset($data[$i])) :?>
 							<tr>
-								<td class="st std"><?php echo $data[$i][1]; ?></td>
-								<td class="st std"><?php echo $data[$i][2]; ?></td>
-								<td class="st std"><?php echo $data[$i][3]; ?></td>
-								<td class="st std"><?php echo $data[$i][4]; ?></td>
+								<th scope="row"><?php echo $i+1; ?></th>
+								<td><?php echo $data[$i][1]; ?></td>
+								<td><?php echo $data[$i][2]; ?></td>
+								<td><?php echo $data[$i][3]; ?></td>
+								<td><?php echo $data[$i][4]; ?></td>
 							<tr>
 						<?php endif; ?>
-				<?php endfor; ?>
+					<?php endfor; ?>
+				</tbody>
   			</table>
-  		</div>
-  		<?php
-			for ($p = 0; $p <= $page_count; $p++) :?>
-				<a href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
-			<?php endfor; ?>
-<!-- Добавление задичи -->
+			<nav aria-label="...">
+				<ul class="pagination">
+					<li class="page-item disabled">
+						<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item active" aria-current="page">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#">Next</a>
+					</li>
+				</ul>
+			</nav>
+				<?php for ($p = 0; $p <= $page_count; $p++) :?>
+					<div><a href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a></div>
+				<?php endfor; ?>
+			<button id="btn-create-task" type="button" class="btn btn-primary">Create task</button>
+	</div>
+	<!-- Форма авторизации в popup окне -->
+		<div id="authorization_form" class="popup-form">
+			<div id="popup" class="container popup">
+				<form action="config/signin.php" method="POST" class="row g-3 needs-validation">
+					<div class="col-md-6">
+						<label for="login" class="form-label">Логин</label>
+						<input id="login" type="text" class="form-control" name="login" placeholder="Введите логин">
+					</div>
+					<div class="col-md-6">
+						<label for="password" class="form-label">Пароль</label>
+						<input id="password" type="password" class="form-control" name="password" placeholder="Введите пароль">
+					</div>
+					<div class="col-12">
+						<button id="btn-login" class="btn btn-primary" type="submit">Отправить форму</button>
+					</div>
+					<div id="close-popup" class="close-popup close-campaign"></div>
+				</form>
+			</div>
+		</div>
+	<!-- Добавление задичи -->
+	<div id="create_form" class="popup-form">
+		<div id="popup" class="container popup">
 			<form action="controllers/tasks.php" method="POST" class="row g-3 needs-validation">
-	  		<div class="mb-3">
+				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Name</label>
-					<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="example" name="name">
+					<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="example" name="name" required>
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlInput2" class="form-label">Email address</label>
@@ -88,43 +136,15 @@ $page_count = floor(count($data) / $count);
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlTextarea1" class="form-label">Text</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text" required></textarea>
 				</div>
-				<div class="mb-3">
-					<input type="hidden" class="form-control" id="exampleFormControlInput3" name="in_work" value="in work">
-				</div>
-				<?php 
-					if (isset($_SESSION['message'])) { 
-						?>
-					<p class="msg"><?php echo $_SESSION['message']; ?></p>
-						<?php unset($_SESSION['message']); ?>
-						<?php
-					}
-				?>
 				<div class="col-12">
-					<button id="btn-login" class="btn btn-primary" type="submit">Отправить форму</button>
+					<button id="btn-send" class="btn btn-primary" type="submit">Отправить форму</button>
 				</div>
+				<div id="close-popup-create-form" class="close-popup close-campaign"></div>
 			</form>
 		</div>
-<!-- Форма авторизации в popup окне -->
-		<div id="overlay" class="overlay">
-			<div id="popup" class="container popup">
-					<form action="config/signin.php" method="POST" class="row g-3 needs-validation">
-						<div class="col-md-6">
-							<label for="login" class="form-label">Логин</label>
-							<input id="login" type="text" class="form-control" name="login" placeholder="Введите логин">
-						</div>
-						<div class="col-md-6">
-							<label for="password" class="form-label">Пароль</label>
-							<input id="password" type="password" class="form-control" name="password" placeholder="Введите пароль">
-						</div>
-						<div class="col-12">
-							<button id="btn-login" class="btn btn-primary" type="submit">Отправить форму</button>
-						</div>
-						<div id="close-popup" class="close-popup close-campaign"></div>
-					</form>
-			</div>
-		</div>
+	</div>
     <footer>
     	<div class="fixed-bottom">
 	    	<nav class="navbar navbar-dark bg-primary d-flex justify-content-end">

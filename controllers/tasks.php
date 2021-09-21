@@ -35,8 +35,8 @@ if (!empty($_POST['name'])) {
 	$name_add = $_POST['name'];
 	$e_mail_add = $_POST['e-mail'];
 	$text_add = $_POST['text'];
-	$completed_add = $_POST['in_work'];
-	setTasks ($name_add, $e_mail_add, $text_add, $completed_add, $link);
+	$status = '';
+	setTasks ($name_add, $e_mail_add, $text_add, $status, $link);
 	header('Location: ../index.php');
 }
 
