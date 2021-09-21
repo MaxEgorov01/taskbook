@@ -8,14 +8,17 @@ foreach ($tasks as $task) {
 }
 
 if (!empty($_POST['name'])) {
-	print_r($_POST);
+	$page = $_POST['page'] + 1;
 	$task_id = $_POST['task_id'];
 	$name = $_POST['name'];
 	$e_mail = $_POST['e-mail'];
 	$text = $_POST['text'];
-	$status = $_POST['status'];
+	$status = '';
+	if (isset($_POST['checkbox'])) {
+		$status = 'отредактировано администратором';
+	}
 	updataTasks ($task_id, $name, $e_mail, $text, $status, $link);
-	header('Location: ../index.php');
+	header('Location: ../views/admin_page.php?page=' . $page);
 }
 
 if(!empty($_POST['select'])) {

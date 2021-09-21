@@ -44,8 +44,8 @@ $page_count = floor(count($data) / $count);
 				<option value='2'>name (z-a)</option>
 				<option value='4'>e-mail (a-z)</option>
 				<option value='5'>e-mail (z-a)</option>
-				<option value='6'>status (c-in work)</option>
-				<option value='7'>status (in work-c)</option>
+				<option value='6'>status (in work)</option>
+				<option value='7'>status (completed)</option>
 				<option value='3'>reset</option>
 				</select>
 				<input type='submit' name='submit' value='sort'>

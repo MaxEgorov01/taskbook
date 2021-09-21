@@ -41,13 +41,13 @@ $page_count = floor(count($data) / $count);
   </header>
   	<div id="content" class="container content_top">
   		<form action="../controllers/admin_page.php" method="POST">
-				<select name='select'>
+				<select name='select' style="cursor: pointer;">
 				<option value='1'>name (a-z)</option>
 				<option value='2'>name (z-a)</option>
 				<option value='4'>e-mail (a-z)</option>
 				<option value='5'>e-mail (z-a)</option>
-				<option value='6'>status (c-in work)</option>
-				<option value='7'>status (in work-c)</option>
+				<option value='6'>status (in work)</option>
+				<option value='7'>status (completed)</option>
 				<option value='3'>reset</option>
 				</select>
 				<input type='submit' name='submit' value='sort'>
@@ -58,6 +58,9 @@ $page_count = floor(count($data) / $count);
 						<form action="../controllers/admin_page.php" method="POST" class="row g-3 needs-validation">
 							<div class="mb-3" style="display: none;">
 								<input type="hidden" class="form-control" name="task_id" value="<?php echo $data[$i][0]; ?>">
+							</div>
+							<div class="mb-3" style="display: none;">
+								<input type="hidden" class="form-control" name="page" value="<?php echo $page; ?>">
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -71,15 +74,9 @@ $page_count = floor(count($data) / $count);
 								<label for="exampleFormControlTextarea1" class="form-label">Text</label>
 								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"><?php echo $data[$i][3]; ?></textarea>
 							</div>
-							<label for="exampleFormControlSelect" class="form-label">Status</label>
-							<select class="form-select" aria-label="Default select example" id="exampleFormControlSelect" name="status">
-								<option selected><?php echo $data[$i][4]; ?></option>
-								<option value="completed">completed</option>
-							  <option value="in work">in work</option>			  
-							</select>
 							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="checkbox">
-							  <label class="form-check-label" for="flexCheckDefault">
+							  <input <?php if (!empty($data[$i][4])) :?> checked <?php endif; ?> class="form-check-input" type="checkbox" value="" id="flexCheckDefault<?php echo $i; ?>" name="checkbox" style="cursor: pointer;">
+							  <label class="form-check-label" for="flexCheckDefault<?php echo $i; ?>" style="cursor: pointer;">
 							    <span>Выполнено</span>
 							  </label>
 							</div>
