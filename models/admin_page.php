@@ -50,3 +50,7 @@ function sortTasks ($data, $link) {
 function updataTasks ($data, $data2, $data3, $data4, $data5, $link) {
 	mysqli_query($link, "UPDATE `tasks` SET `name`='$data2',`e-mail`='$data3',`text`='$data4',`completed`='$data5' WHERE `task_id`='$data'");
 }
+
+function delTasks ($data, $link) {
+	mysqli_query($link, "DELETE FROM `tasks` WHERE `task_id` = '$data'");
+}

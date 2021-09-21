@@ -41,8 +41,6 @@ if ($sort['sort_status'] == 7) {
 	$tasks = mysqli_fetch_all($tasks);
 }
 
-
-
 // $tasks = mysqli_query($link, "SELECT * FROM `tasks`");
 // $tasks = mysqli_fetch_all($tasks);
 
@@ -53,4 +51,3 @@ function sortTasks ($data, $link) {
 function setTasks ($data, $data2, $data3, $data4, $link) {
 	mysqli_query($link, "INSERT INTO `tasks`(`task_id`, `name`, `e-mail`, `text`, `completed`) VALUES (NULL,'$data','$data2','$data3','$data4')");
 }
-

@@ -80,9 +80,8 @@ $page_count = ceil(count($data) / $count);
 									<span>Выполнено</span>
 								</label>
 								</div>
-								<div class="col-12">
-									<button class="btn btn-primary" type="submit" style="width: 100px;">Save</button>
-								</div>
+								<button class="btn btn-primary" type="submit" style="width: 100px; margin-right: 10px;">Save</button>
+								<input class="btn btn-outline-danger" type="submit" style="width: 100px; margin-left: 10px;" name="dellete" value="Dellete">
 							</form>
 						<?php endif; ?>
 				<?php endfor; ?>

@@ -7,6 +7,13 @@ foreach ($tasks as $task) {
 	$data[] = $task;
 }
 
+if (!empty($_POST['dellete'])) {
+	$task_id = $_POST['task_id'];
+	$page = $_POST['page'] + 1;
+	delTasks ($task_id, $link);
+	header('Location: ../views/admin_page.php?page=' . $page);
+}
+
 if (!empty($_POST['name'])) {
 	$page = $_POST['page'] + 1;
 	$task_id = $_POST['task_id'];
