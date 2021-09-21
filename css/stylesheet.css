@@ -1,3 +1,6 @@
+footer {
+	margin-top: auto;
+}
 .hidden {
 	display: none;
 }
@@ -13,8 +16,7 @@
     max-width: 400px;
 }
 .content_top {
-    margin-top: 5em;
-    margin-bottom: 5em;
+	margin-top: 46px;
 }
 .text_dec {
     color: #fff;
@@ -56,9 +58,23 @@
     transform: rotate(45deg);
 }
 .msg {
-    border: 2px solid #333;
+    border: 2px solid #0d6efd;
     border-radius: 3px;
     padding: 10px;
     text-align: center;
-    color: #333;
+    color: #212529;
+    margin: 1rem auto;
+    width: 300px;
+}
+.page {
+	min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.cart-form {
+    margin: 0px 0px 30px;
+    border: solid 2px #0d6efd;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #9beafa26;
 }
