@@ -8,10 +8,8 @@ $(document).ready(function() {
         $('#authorization_form').fadeOut();
         $('#content').css('filter', 'none');
     });
-});
-
-$(document).ready(function() {
-    $('#btn-create-task').on('click', function() {
+	
+	$('#btn-create-task').on('click', function() {
         $('#content').css('filter', 'blur(5px)');
         $('#create_form').fadeIn();
     });
@@ -21,4 +19,5 @@ $(document).ready(function() {
         $('#content').css('filter', 'none');
     });
 });
+
 

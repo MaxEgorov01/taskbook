@@ -85,22 +85,19 @@ $page_count = floor(count($data) / $count);
   			</table>
 			<nav aria-label="...">
 				<ul class="pagination">
-					<li class="page-item disabled">
-						<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+					<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == 1) :?>disabled<?php elseif (!isset($_GET['page'])) :?>disabled<?php endif; ?>">
+						<a class="page-link" href="?page=<?php echo $_GET['page'] - 1; ?>">Previous</a>
 					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active" aria-current="page">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#">Next</a>
+						<?php for ($p = 0; $p <= $page_count; $p++) :?>
+							<li class="page-item <?php if (isset($_GET['page']) && ($_GET['page'] - 1) == $p) :?>active<?php elseif (!isset($_GET['page']) && $p == 0) :?>active<?php endif; ?>">
+								<a class="page-link" href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
+							</li>
+						<?php endfor; ?>
+					<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == ($page_count +1)) :?>disabled<?php endif; ?>">
+						<a class="page-link" href="?page=<?php echo (isset($_GET['page'])) ? $_GET['page'] + 1 : 2; ?>">Next</a>
 					</li>
 				</ul>
 			</nav>
-				<?php for ($p = 0; $p <= $page_count; $p++) :?>
-					<div><a href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a></div>
-				<?php endfor; ?>
 			<button id="btn-create-task" type="button" class="btn btn-primary">Create task</button>
 	</div>
 	<!-- Форма авторизации в popup окне -->

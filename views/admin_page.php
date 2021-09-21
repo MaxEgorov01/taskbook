@@ -86,10 +86,21 @@ $page_count = floor(count($data) / $count);
 						</form>
 					<?php endif; ?>
 			<?php endfor; ?>
-			<?php
-				for ($p = 0; $p <= $page_count; $p++) :?>
-					<a href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
-			<?php endfor; ?>
+			<nav aria-label="...">
+				<ul class="pagination">
+					<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == 1) :?>disabled<?php elseif (!isset($_GET['page'])) :?>disabled<?php endif; ?>">
+						<a class="page-link" href="?page=<?php echo $_GET['page'] - 1; ?>">Previous</a>
+					</li>
+						<?php for ($p = 0; $p <= $page_count; $p++) :?>
+							<li class="page-item <?php if (isset($_GET['page']) && ($_GET['page'] - 1) == $p) :?>active<?php elseif (!isset($_GET['page']) && $p == 0) :?>active<?php endif; ?>">
+								<a class="page-link" href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
+							</li>
+						<?php endfor; ?>
+					<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == ($page_count +1)) :?>disabled<?php endif; ?>">
+						<a class="page-link" href="?page=<?php echo (isset($_GET['page'])) ? $_GET['page'] + 1 : 2; ?>">Next</a>
+					</li>
+				</ul>
+			</nav>
 		</div>
     <footer>
     	<div class="fixed-bottom">
