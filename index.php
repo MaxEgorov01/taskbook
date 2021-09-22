@@ -31,7 +31,7 @@ $page_count = ceil(count($data) / $count);
 		<header class="fixed-top">
 			<nav id="navbar" class="navbar navbar-dark bg-primary d-flex justify-content-end">
 				<div class="col-2">
-					<button id="btn-login" type="button" class="btn btn-warning btn-sm">Вход</button>
+					<button id="btn-login" type="button" class="btn btn-warning btn-sm" style="width:80px">Signin</button>
 				</div>
 			</nav>
 		</header>
@@ -44,6 +44,7 @@ $page_count = ceil(count($data) / $count);
 						<?php
 					}
 				?>
+	<div style="margin-bottom: 20px;">
 		<form action="controllers/tasks.php" method="POST">
 				<select name="select" class="form-select form-select-sm" aria-label=".form-select-sm example" style="width: 140px !important; display: inline-block; margin: 15px 5px 15px 20px;">
 				  <option value="1">name (a-z)</option>
@@ -91,12 +92,13 @@ $page_count = ceil(count($data) / $count);
 									<a class="page-link" href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
 								</li>
 							<?php endfor; ?>
-						<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == ($page_count +1)) :?>disabled<?php endif; ?>">
+						<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == $page_count) :?>disabled<?php endif; ?>">
 							<a class="page-link" href="?page=<?php echo (isset($_GET['page'])) ? $_GET['page'] + 1 : 2; ?>">Next</a>
 						</li>
 					</ul>
 				</nav>
-				<button id="btn-create-task" type="button" class="btn btn-primary">Create task</button>
+				<button id="btn-create-task" type="button" class="btn btn-primary" style="width:100%">Create task</button>
+	</div>
 		</div>
 		<!-- Форма авторизации в popup окне -->
 			<div id="authorization_form" class="popup-form">

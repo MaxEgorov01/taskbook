@@ -35,7 +35,7 @@ $page_count = ceil(count($data) / $count);
 		<header class="fixed-top">
 			<nav id="navbar" class="navbar navbar-dark bg-primary d-flex justify-content-end">
 				<div class="col-2">
-					<a href="../config/logout.php" class="btn btn-warning btn-sm">Выход</a>
+					<a href="../config/logout.php" class="btn btn-warning btn-sm" style="width:80px">Exit</a>
 				</div>
 			</nav>
 		</header>
@@ -95,7 +95,7 @@ $page_count = ceil(count($data) / $count);
 									<a class="page-link" href="?page=<?php echo $p + 1; ?>"><?php echo $p + 1; ?></a>
 								</li>
 							<?php endfor; ?>
-						<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == ($page_count +1)) :?>disabled<?php endif; ?>">
+						<li class="page-item <?php if (isset($_GET['page']) && $_GET['page'] == $page_count) :?>disabled<?php endif; ?>">
 							<a class="page-link" href="?page=<?php echo (isset($_GET['page'])) ? $_GET['page'] + 1 : 2; ?>">Next</a>
 						</li>
 					</ul>
