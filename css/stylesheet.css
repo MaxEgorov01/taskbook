@@ -78,3 +78,15 @@ footer {
     border-radius: 10px;
     background-color: #9beafa26;
 }
+.popup-btn-del {
+    padding: 10px;
+    z-index: 1;
+    left: 50%;
+    height: 0px;
+    transform: translate(85%, -1190%);
+    max-width: 250px;
+    display: none;
+}
+.msg_del {
+    font-weight: 700;
+}

@@ -18,6 +18,18 @@ $(document).ready(function() {
         $('#create_form').fadeOut();
         $('#content').css('filter', 'none');
     });
+
+    $('.btn-del').on('click', function() {
+        let block_del = $(this).next('div');
+        let btn_del = $(this).next('div').find('.btn-danger');
+        block_del.fadeIn();
+    });
+
+    $('.no-del').on('click', function() {
+        let block_del_none = $(this).parent('.popup-btn-del');
+        block_del_none.fadeOut();
+    });
+
 });
 
 

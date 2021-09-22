@@ -81,7 +81,12 @@ $page_count = ceil(count($data) / $count);
 								</label>
 								</div>
 								<button class="btn btn-primary" type="submit" style="width: 100px; margin-right: 10px;">Save</button>
-								<input class="btn btn-outline-danger" type="submit" style="width: 100px; margin-left: 10px;" name="dellete" value="Dellete">
+								<button type="button" class="btn btn-outline-danger btn-del" style="width: 100px; margin-left: 10px;">Delete</button>
+								<div class="popup-btn-del">
+									<span class="msg_del">Are you seriously??</span>
+									<input class="btn btn-danger" type="submit" style="width: 100px; margin-right: 10px;" name="dellete" value="Yes">
+									<button type="button" class="btn btn-primary no-del" style="width: 100px; margin-left: 10px;">No</button>
+								</div>
 							</form>
 						<?php endif; ?>
 				<?php endfor; ?>
@@ -108,6 +113,7 @@ $page_count = ceil(count($data) / $count);
 				</div>
 			</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
 		</footer>
 	</div>
   </body>
